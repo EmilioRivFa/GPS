@@ -259,7 +259,12 @@
 
   async function calcularRuta(origen, destino) {
     directionsService.route(
-      { origin: origen, destination: destino, travelMode: google.maps.TravelMode.DRIVING },
+      { 
+        origin: origen, 
+        destination: destino, 
+        travelMode: google.maps.TravelMode.DRIVING,
+        avoid: ['ferries']  // <-- Aquí evitamos que la ruta cruce por ferries (agua)
+      },
       (result, status) => {
         if (status === "OK") {
           directionsRenderer.setDirections(result);
